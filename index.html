@@ -137,12 +137,6 @@ h3{font-size:42px;font-weight:700;line-height:1.15;letter-spacing:-.01em}
 .yqq{font-size:76px;font-weight:800;line-height:1.14;letter-spacing:-.02em}
 .yqs{margin-top:44px}
 .yqs .pill{font-size:38px;padding:16px 46px}
-#rotate{position:fixed;inset:0;z-index:90;display:none;flex-direction:column;align-items:center;justify-content:center;gap:22px;background:linear-gradient(160deg,#021B4F,#010F2E);color:#fff;text-align:center;padding:30px;font-family:Poppins,system-ui,sans-serif}
-#rotate .ic{font-size:64px;color:#FFD43B}
-#rotate b{font-size:24px;line-height:1.3}
-#rotate p{opacity:.75;font-size:15px}
-#rotate button{font:700 16px Poppins,sans-serif;padding:14px 26px;border-radius:14px;border:1.5px solid rgba(255,255,255,.4);background:transparent;color:#fff}
-@media (orientation:portrait) and (max-width:900px){#rotate.on{display:flex}}
 /* barra / dicas */
 #bar{position:absolute;left:0;bottom:0;height:8px;background:var(--yellow);width:0;transition:width .6s ease;z-index:20}
 #wipe{position:absolute;inset:0;z-index:15;pointer-events:none;transform:translateX(-101%);background:linear-gradient(90deg,var(--yellow) 0,var(--yellow) 6%,var(--royal) 6%,var(--navy) 100%)}
@@ -667,7 +661,6 @@ body.idle{cursor:none}
 <div id="wipe"></div>
 <div id="bar"></div>
 </div>
-<div id="rotate" class="on"><svg class="ic" style="width:64px;height:64px"><use href="#i-rotate-cw"/></svg><b>Gire o celular para<br>ver a apresentação na horizontal</b><p>Fica bem melhor em tela deitada ou no computador.</p><button id="rcont" type="button">Continuar assim mesmo</button></div>
 <div id="gate"><div class="box"><img src="assets/logo.png" alt="Modernize Digital"><h1>Apresentação comercial</h1><p>Acesso restrito à equipe Modernize. Digite o código para entrar.</p><form id="gform"><input id="gcode" type="password" placeholder="Código de acesso" autocomplete="off" autofocus><button type="submit">Entrar</button></form><div class="err" id="gerr"></div></div></div>
 <div id="hint">← → ou espaço para avançar · F tela cheia · Home/End</div>
 
@@ -740,15 +733,13 @@ body.idle{cursor:none}
     else if(k==='Home')show(0,false);else if(k==='End')show(total-1,true);
     else if(k==='f'||k==='F'){toggleFs()}
   });
-  addEventListener('click',function(e){if(locked)return;if(e.target.closest&&e.target.closest('#rotate,#gate'))return;e.clientX>innerWidth*.3?next():prev()});
+  addEventListener('click',function(e){if(locked)return;if(e.target.closest&&e.target.closest('#gate'))return;e.clientX>innerWidth*.3?next():prev()});
   var tx=null;addEventListener('touchstart',function(e){if(locked)return;tx=e.touches[0].clientX},{passive:true});
   addEventListener('touchend',function(e){if(locked||tx===null)return;var d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50){(d<0?next:prev)();e.preventDefault()}tx=null});
   var idle;addEventListener('mousemove',function(e){
     document.body.classList.remove('idle');clearTimeout(idle);idle=setTimeout(function(){document.body.classList.add('idle')},2500);
     stage.style.setProperty('--mx',(e.clientX/innerWidth-.5).toFixed(3));stage.style.setProperty('--my',(e.clientY/innerHeight-.5).toFixed(3));
   });
-  var rot=document.getElementById('rotate'),rc=document.getElementById('rcont');
-  if(rc)rc.addEventListener('click',function(e){e.stopPropagation();rot.classList.remove('on')});
   var start=(parseInt((location.hash||'#1').slice(1))||1)-1;
   show(start,false,'init');
   document.body.classList.add('hint');setTimeout(function(){document.body.classList.remove('hint')},4500);
