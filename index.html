@@ -14,7 +14,7 @@
 @font-face{font-family:'Poppins';font-style:normal;font-weight:800;font-display:swap;src:url(assets/fonts/poppins-800.woff2) format('woff2')}
 :root{--royal:#034AAC;--royal2:#0A5BD0;--navy:#021B4F;--deep:#010F2E;--yellow:#FFD43B;--paper:#F3F6FC;--ink:#0B1B3F;--mute:#5B6B94;--line:rgba(3,74,172,.12)}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;background:#000;overflow:hidden;font-family:Poppins,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+html,body{height:100%;height:100dvh;background:#000;overflow:hidden;font-family:Poppins,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
 #stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:center center;background:var(--deep);overflow:hidden}
 .slide{position:absolute;inset:0;opacity:0;visibility:hidden;transform:scale(1.03);transition:opacity .5s ease,transform .8s cubic-bezier(.2,.7,.2,1),visibility 0s .8s;overflow:hidden}
 .slide.active{opacity:1;visibility:visible;transform:none;transition:opacity .5s ease .12s,transform .9s cubic-bezier(.2,.7,.2,1) .05s}
@@ -123,6 +123,26 @@ h3{font-size:42px;font-weight:700;line-height:1.15;letter-spacing:-.01em}
 #gate input:focus{border-color:#FFD43B}
 #gate button{font:700 18px Poppins,sans-serif;padding:16px 28px;border-radius:14px;border:0;background:#FFD43B;color:#021B4F;cursor:pointer}
 #gate .err{color:#FFB4B4;font-size:15px;margin-top:14px;min-height:20px}
+
+.task{display:flex;align-items:center;gap:18px;padding:14px 22px;border-radius:22px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);font-size:26px;font-weight:600;line-height:1.25}
+.task .tile{width:54px;height:54px;border-radius:16px;font-size:30px;flex:none}
+.cb{height:46px;border-radius:12px;transform-origin:left;transform:scaleX(0)}
+.f.show .cb,.active .a .cb,.active .ar .cb{animation:growX 1.4s cubic-bezier(.2,.8,.2,1) .5s forwards}
+@keyframes growX{to{transform:scaleX(1)}}
+.f .sim{opacity:0;transform:scale(.4);transition:opacity .5s ease,transform .6s cubic-bezier(.3,1.6,.5,1)}
+.f.show .sim{opacity:1;transform:none;transition-delay:.8s}
+.slide>.yq{position:absolute;inset:0;z-index:12;background:rgba(1,15,46,.88);display:grid;place-items:center;transform:none}
+.yqc{width:1400px;text-align:center;color:#fff}
+.yqt{display:inline-flex;align-items:center;gap:12px;font-size:26px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:34px}
+.yqq{font-size:76px;font-weight:800;line-height:1.14;letter-spacing:-.02em}
+.yqs{margin-top:44px}
+.yqs .pill{font-size:38px;padding:16px 46px}
+#rotate{position:fixed;inset:0;z-index:90;display:none;flex-direction:column;align-items:center;justify-content:center;gap:22px;background:linear-gradient(160deg,#021B4F,#010F2E);color:#fff;text-align:center;padding:30px;font-family:Poppins,system-ui,sans-serif}
+#rotate .ic{font-size:64px;color:#FFD43B}
+#rotate b{font-size:24px;line-height:1.3}
+#rotate p{opacity:.75;font-size:15px}
+#rotate button{font:700 16px Poppins,sans-serif;padding:14px 26px;border-radius:14px;border:1.5px solid rgba(255,255,255,.4);background:transparent;color:#fff}
+@media (orientation:portrait) and (max-width:900px){#rotate.on{display:flex}}
 /* barra / dicas */
 #bar{position:absolute;left:0;bottom:0;height:8px;background:var(--yellow);width:0;transition:width .6s ease;z-index:20}
 #wipe{position:absolute;inset:0;z-index:15;pointer-events:none;transform:translateX(-101%);background:linear-gradient(90deg,var(--yellow) 0,var(--yellow) 6%,var(--royal) 6%,var(--navy) 100%)}
@@ -182,6 +202,14 @@ body.idle{cursor:none}
   <circle cx="12" cy="12" r="10" />
   <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8" />
   <path d="M12 18V6" />
+</symbol><symbol id="i-circle-help" viewBox="0 0 24 24">
+  <circle cx="12" cy="12" r="10" />
+  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+  <path d="M12 17h.01" />
+</symbol><symbol id="i-circle-x" viewBox="0 0 24 24">
+  <circle cx="12" cy="12" r="10" />
+  <path d="m15 9-6 6" />
+  <path d="m9 9 6 6" />
 </symbol><symbol id="i-clipboard-list" viewBox="0 0 24 24">
   <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
   <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
@@ -222,6 +250,10 @@ body.idle{cursor:none}
   <circle cx="12" cy="12" r="10" />
   <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
   <path d="M2 12h20" />
+</symbol><symbol id="i-graduation-cap" viewBox="0 0 24 24">
+  <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" />
+  <path d="M22 10v6" />
+  <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" />
 </symbol><symbol id="i-handshake" viewBox="0 0 24 24">
   <path d="m11 17 2 2a1 1 0 1 0 3-3" />
   <path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" />
@@ -286,6 +318,9 @@ body.idle{cursor:none}
   <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
   <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
   <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" />
+</symbol><symbol id="i-pen-line" viewBox="0 0 24 24">
+  <path d="M12 20h9" />
+  <path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z" />
 </symbol><symbol id="i-phone" viewBox="0 0 24 24">
   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
 </symbol><symbol id="i-play" viewBox="0 0 24 24">
@@ -303,6 +338,9 @@ body.idle{cursor:none}
   <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
   <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
   <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
+</symbol><symbol id="i-rotate-cw" viewBox="0 0 24 24">
+  <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" />
+  <path d="M21 3v5h-5" />
 </symbol><symbol id="i-send" viewBox="0 0 24 24">
   <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" />
   <path d="m21.854 2.147-10.94 10.939" />
@@ -338,6 +376,10 @@ body.idle{cursor:none}
   <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
   <circle cx="9" cy="7" r="4" />
   <polyline points="16 11 18 13 22 9" />
+</symbol><symbol id="i-users-round" viewBox="0 0 24 24">
+  <path d="M18 21a8 8 0 0 0-16 0" />
+  <circle cx="10" cy="8" r="5" />
+  <path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3" />
 </symbol><symbol id="i-users" viewBox="0 0 24 24">
   <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
   <circle cx="9" cy="7" r="4" />
@@ -364,20 +406,20 @@ body.idle{cursor:none}
   <div style="position:absolute;left:110px;top:250px;width:960px">
     <div class="eyebrow a" style="--d:0">Proposta comercial</div>
     <h1 class="split" style="margin:26px 0 38px;font-size:112px">Marketing que <span class="y">vende</span> para negócios locais.</h1>
-    <div class="lead a" style="--d:.7;opacity:.88;max-width:860px">Publicações e tráfego pago, com atendimento próximo e relatório toda semana.</div>
+    <div class="lead a" style="--d:.7;opacity:.88;max-width:900px;font-size:38px">Publicações e tráfego pago, com atendimento próximo e relatório toda semana.</div>
+    <div class="a" style="--d:.9;display:flex;gap:14px;flex-wrap:nowrap;margin-top:36px;max-width:1000px"><span class="pill o" style="font-size:22px;padding:10px 22px;white-space:nowrap"><svg class="ic"><use href="#i-instagram"/></svg> Instagram</span><span class="pill o" style="font-size:22px;padding:10px 22px;white-space:nowrap"><svg class="ic"><use href="#i-message-circle"/></svg> WhatsApp</span><span class="pill o" style="font-size:22px;padding:10px 22px;white-space:nowrap"><svg class="ic"><use href="#i-megaphone"/></svg> Anúncios</span><span class="pill o" style="font-size:22px;padding:10px 22px;white-space:nowrap"><svg class="ic"><use href="#i-chart-column"/></svg> Relatório semanal</span></div>
   </div>
   <div class="ring" style="width:880px;height:880px;right:20px;top:120px"></div>
   <div class="ring" style="width:620px;height:620px;right:150px;top:250px;animation-direction:reverse;animation-duration:55s"></div>
   <div class="bgl" style="right:170px;top:330px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(255,212,59,.35),transparent 68%)"></div>
   <img class="mas pop" src="assets/mascote.png" alt="Mascote Modernize" style="--d:.5;right:140px;top:110px;height:900px;filter:drop-shadow(0 40px 60px rgba(0,0,0,.45))">
-  <div class="chipf a" style="--d:.9;left:1120px;top:210px;animation-delay:.2s"><span class="tile t-yellow"><svg class="ic"><use href="#i-instagram"/></svg></span>Instagram</div>
-  <div class="chipf a" style="--d:1.0;left:1520px;top:330px;animation-delay:1s"><span class="tile t-royal"><svg class="ic"><use href="#i-message-circle"/></svg></span>WhatsApp</div>
-  <div class="chipf a" style="--d:1.1;left:1100px;top:690px;animation-delay:1.8s"><span class="tile t-yellow"><svg class="ic"><use href="#i-megaphone"/></svg></span>Anúncios</div>
-  <div class="chipf a" style="--d:1.2;left:1440px;top:810px;animation-delay:.6s"><span class="tile t-royal"><svg class="ic"><use href="#i-chart-column"/></svg></span>Relatório semanal</div>
-  <div class="foot"><span>agenciamodernizedigital.com.br</span><span>@agenciamodernizedigital</span></div>
+  <div class="foot"><span>agenciamodernizedigital.com.br</span><span></span></div>
 </section>
 
-<!-- 2 PROBLEMA -->
+<section class="slide dark noise" data-title="Equipe"><div class="bgl orb a1"></div><div class="bgl orb a2"></div><div class="bgl grid"></div><div class="top"><div><img class="logo lw" src="assets/logo.png" alt="Modernize Digital"><img class="logo ld" src="assets/logo-escuro.png" alt=""></div><div class="tagp"><svg class="ic"><use href="#i-users-round"/></svg>Nossa equipe</div></div><div style="position:absolute;left:110px;top:240px;width:1080px"><div class="eyebrow a" style="--d:0">Quem vai cuidar do seu negócio</div><h2 class="split" style="margin:26px 0 34px;font-size:86px">Conheça a <span class="y">equipe</span> que vai trabalhar no seu negócio</h2><div class="lead a" style="--d:.7;opacity:.9;max-width:980px">Vamos mostrar ao vivo onde o time trabalha, para você ver quem está por trás de cada entrega.</div><div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:50px;max-width:1040px"><div class="a" style="--d:0.90;display:flex;align-items:center;gap:16px;padding:16px 26px 16px 18px;border-radius:22px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);font-size:28px;font-weight:600"><span class="tile t-yellow" style="width:58px;height:58px;font-size:32px;border-radius:16px"><svg class="ic"><use href="#i-palette"/></svg></span>Designer</div><div class="a" style="--d:1.02;display:flex;align-items:center;gap:16px;padding:16px 26px 16px 18px;border-radius:22px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);font-size:28px;font-weight:600"><span class="tile t-yellow" style="width:58px;height:58px;font-size:32px;border-radius:16px"><svg class="ic"><use href="#i-pen-line"/></svg></span>Redator</div><div class="a" style="--d:1.14;display:flex;align-items:center;gap:16px;padding:16px 26px 16px 18px;border-radius:22px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);font-size:28px;font-weight:600"><span class="tile t-yellow" style="width:58px;height:58px;font-size:32px;border-radius:16px"><svg class="ic"><use href="#i-chart-line"/></svg></span>Gestor de tráfego</div><div class="a" style="--d:1.26;display:flex;align-items:center;gap:16px;padding:16px 26px 16px 18px;border-radius:22px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);font-size:28px;font-weight:600"><span class="tile t-yellow" style="width:58px;height:58px;font-size:32px;border-radius:16px"><svg class="ic"><use href="#i-smartphone"/></svg></span>Social media</div><div class="a" style="--d:1.38;display:flex;align-items:center;gap:16px;padding:16px 26px 16px 18px;border-radius:22px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);font-size:28px;font-weight:600"><span class="tile t-yellow" style="width:58px;height:58px;font-size:32px;border-radius:16px"><svg class="ic"><use href="#i-heart"/></svg></span>Atendimento</div></div></div><div class="bgl" style="right:110px;top:300px;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(255,212,59,.38),transparent 66%)"></div><img class="mas pop" src="assets/mascote.png" alt="Mascote" style="--d:.5;right:150px;top:150px;height:820px;filter:drop-shadow(0 40px 50px rgba(0,0,0,.45))"><div class="a pill" style="--d:1.6;position:absolute;right:110px;bottom:70px;font-size:26px"><svg class="ic"><use href="#i-video"/></svg> Equipe ao vivo</div></section>
+
+<section class="slide royal noise" data-title="Perguntas"><div class="bgl orb a1"></div><div class="bgl orb a2"></div><div class="bgl grid"></div><div class="top"><div><img class="logo lw" src="assets/logo.png" alt="Modernize Digital"><img class="logo ld" src="assets/logo-escuro.png" alt=""></div><div class="tagp"><svg class="ic"><use href="#i-circle-help"/></svg>3 perguntas rápidas</div></div><h2 class="split" style="position:absolute;left:110px;top:200px;width:1200px;font-size:80px">Antes de começar, <span class="y">3 perguntas rápidas</span></h2><div style="position:absolute;left:110px;top:440px;width:1180px;display:flex;flex-direction:column;gap:26px"><div class="glass f" data-s="1" style="padding:30px 40px;border-radius:34px;display:flex;align-items:center;gap:30px"><div class="tile s t-yellow" style="flex:none;font-weight:800;font-size:44px">1</div><div style="flex:1;font-size:36px;font-weight:600;line-height:1.3">Você quer que mais clientes encontrem o seu negócio e chamem no WhatsApp?</div><span class="pill sim" style="flex:none"><svg class="ic"><use href="#i-check"/></svg> Sim</span></div><div class="glass f" data-s="2" style="padding:30px 40px;border-radius:34px;display:flex;align-items:center;gap:30px"><div class="tile s t-yellow" style="flex:none;font-weight:800;font-size:44px">2</div><div style="flex:1;font-size:36px;font-weight:600;line-height:1.3">Hoje falta tempo para planejar, criar e postar com constância?</div><span class="pill sim" style="flex:none"><svg class="ic"><use href="#i-check"/></svg> Sim</span></div><div class="glass f" data-s="3" style="padding:30px 40px;border-radius:34px;display:flex;align-items:center;gap:30px"><div class="tile s t-yellow" style="flex:none;font-weight:800;font-size:44px">3</div><div style="flex:1;font-size:36px;font-weight:600;line-height:1.3">Faz sentido deixar isso com uma equipe, para você focar em atender e vender?</div><span class="pill sim" style="flex:none"><svg class="ic"><use href="#i-check"/></svg> Sim</span></div></div><div class="bgl" style="right:60px;top:300px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,rgba(255,212,59,.36),transparent 66%)"></div><img class="mas pop" src="assets/mascote.png" alt="Mascote" style="--d:.4;right:150px;top:200px;height:800px;filter:drop-shadow(0 40px 50px rgba(0,0,0,.4))"><div class="foot"><span>Modernize Digital</span><span data-num></span></div></section>
+
 <section class="slide light" data-title="O ponto de partida">
   <div class="bgl orb a1"></div><div class="bgl orb a2"></div><div class="bgl grid"></div>
   <div class="top"><div><img class="logo lw" src="assets/logo.png" alt=""><img class="logo ld" src="assets/logo-escuro.png" alt="Modernize Digital"></div><div class="tagp" style="color:var(--royal)"><svg class="ic"><use href="#i-eye"/></svg>O ponto de partida</div></div>
@@ -407,7 +449,6 @@ body.idle{cursor:none}
   <div class="foot"><span>Ilustração para exemplo</span><span></span></div>
 </section>
 
-<!-- 3 TRÊS ERROS -->
 <section class="slide paper" data-title="Três erros">
   <div class="bgl orb a1"></div><div class="bgl orb a2"></div><div class="bgl grid"></div>
   <div class="top"><div><img class="logo lw" src="assets/logo.png" alt=""><img class="logo ld" src="assets/logo-escuro.png" alt="Modernize Digital"></div><div class="tagp" style="color:var(--royal)"><svg class="ic"><use href="#i-target"/></svg>O que trava o resultado</div></div>
@@ -418,9 +459,12 @@ body.idle{cursor:none}
     <div class="card f" data-s="3" style="padding:46px"><div class="tile" style="background:#E3F7EE;color:#0B8A5F"><svg class="ic"><use href="#i-megaphone"/></svg></div><h3 style="margin:28px 0 14px">Anúncio sem estratégia</h3><p class="sm" style="color:var(--mute);min-height:135px">Dinheiro gasto sem público certo e sem medir o retorno.</p><div class="pill b" style="margin-top:26px;font-size:24px;padding:10px 24px"><svg class="ic"><use href="#i-circle-check"/></svg>Público segmentado</div></div>
   </div>
   <div class="foot"><span>Modernize Digital</span><span data-num></span></div>
-</section>
+<div class="yq f" data-s="4"><div class="yqc"><div class="yqt"><svg class="ic"><use href="#i-circle-help"/></svg> Pergunta-chave</div><div class="yqq">Algum desses três erros acontece no seu negócio hoje?</div><div class="yqs"><span class="pill"><svg class="ic"><use href="#i-check"/></svg> Sim</span></div></div></div></section>
 
-<!-- 4 FUNDADOR -->
+<section class="slide dark noise" data-title="Fazer sozinho"><div class="bgl orb a1"></div><div class="bgl orb a2"></div><div class="bgl grid"></div><div class="top"><div><img class="logo lw" src="assets/logo.png" alt="Modernize Digital"><img class="logo ld" src="assets/logo-escuro.png" alt=""></div><div class="tagp"><svg class="ic"><use href="#i-clock"/></svg>Fazendo sozinho</div></div><h2 class="split" style="position:absolute;left:110px;top:195px;width:1700px;font-size:76px">Fazer sozinho custa <span class="y">tempo e dinheiro</span></h2><div style="position:absolute;left:110px;top:350px;width:1170px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 20px"><div class="task a" style="--d:0.40"><span class="tile t-glass"><svg class="ic"><use href="#i-calendar-clock"/></svg></span><span>Planejar o que postar</span></div><div class="task a" style="--d:0.50"><span class="tile t-glass"><svg class="ic"><use href="#i-lightbulb"/></svg></span><span>Pensar nos temas dos posts</span></div><div class="task a" style="--d:0.60"><span class="tile t-glass"><svg class="ic"><use href="#i-palette"/></svg></span><span>Criar as artes</span></div><div class="task a" style="--d:0.70"><span class="tile t-glass"><svg class="ic"><use href="#i-film"/></svg></span><span>Editar os vídeos</span></div><div class="task a" style="--d:0.80"><span class="tile t-glass"><svg class="ic"><use href="#i-user-check"/></svg></span><span>Configurar as contas</span></div><div class="task a" style="--d:0.90"><span class="tile t-glass"><svg class="ic"><use href="#i-megaphone"/></svg></span><span>Configurar os anúncios</span></div><div class="task a" style="--d:1.00"><span class="tile t-glass"><svg class="ic"><use href="#i-target"/></svg></span><span>Segmentar o público certo</span></div><div class="task a" style="--d:1.10"><span class="tile t-glass"><svg class="ic"><use href="#i-image"/></svg></span><span>Criar os criativos dos anúncios</span></div><div class="task a" style="--d:1.20"><span class="tile t-glass"><svg class="ic"><use href="#i-gauge"/></svg></span><span>Otimizar as campanhas</span></div><div class="task a" style="--d:1.30"><span class="tile t-glass"><svg class="ic"><use href="#i-chart-column"/></svg></span><span>Acompanhar os resultados</span></div><div class="task a" style="--d:1.40;grid-column:1/3"><span class="tile t-glass"><svg class="ic"><use href="#i-circle-help"/></svg></span><span>Saber o que mexer se não der resultado: público, direcionamento ou criativos</span></div></div><div class="glass ar" style="--d:.6;position:absolute;left:1330px;top:350px;width:480px;height:640px;padding:40px;display:flex;flex-direction:column;justify-content:space-between"><div><div class="num y" style="font-size:200px"><span data-count data-to="11">11</span></div><div style="font-size:36px;font-weight:700;line-height:1.2;margin-top:6px">tarefas para dar conta, todo mês</div><div class="sm" style="opacity:.8;font-size:27px;margin-top:18px">Tempo e dinheiro jogados fora quando falta experiência.</div></div><div class="pill" style="font-size:25px;line-height:1.25;border-radius:26px;padding:18px 24px;align-items:flex-start"><span style="margin-top:3px"><svg class="ic"><use href="#i-badge-check"/></svg></span><span>Mais de 350 clientes ativos e mais de 50 segmentos atendidos</span></div></div><div class="yq f" data-s="1"><div class="yqc"><div class="yqt"><svg class="ic"><use href="#i-circle-help"/></svg> Pergunta-chave</div><div class="yqq">Você tem tempo para fazer tudo isso e ainda atender os seus clientes?</div><div class="yqs"><span class="pill"><svg class="ic"><use href="#i-check"/></svg> Sim</span></div></div></div><div class="foot"><span>Modernize Digital</span><span data-num></span></div></section>
+
+<section class="slide light" data-title="Equipe separada"><div class="bgl orb a1"></div><div class="bgl orb a2"></div><div class="bgl grid"></div><div class="top"><div><img class="logo lw" src="assets/logo.png" alt=""><img class="logo ld" src="assets/logo-escuro.png" alt="Modernize Digital"></div><div class="tagp" style="color:var(--royal)"><svg class="ic"><use href="#i-wallet"/></svg>Contratando separado</div></div><h2 class="split" style="position:absolute;left:110px;top:195px;width:1700px;font-size:72px">Contratar cada profissional separado <span class="rb">sai caro</span></h2><div style="position:absolute;left:110px;top:370px;width:900px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px"><div class="card a" style="--d:0.35;padding:26px 28px;display:flex;align-items:center;gap:22px;border-radius:28px"><div class="tile s t-royal"><svg class="ic"><use href="#i-palette"/></svg></div><div style="font-size:32px;font-weight:700;line-height:1.2">Designer</div></div><div class="card a" style="--d:0.47;padding:26px 28px;display:flex;align-items:center;gap:22px;border-radius:28px"><div class="tile s t-yellow"><svg class="ic"><use href="#i-pen-line"/></svg></div><div style="font-size:32px;font-weight:700;line-height:1.2">Redator</div></div><div class="card a" style="--d:0.59;padding:26px 28px;display:flex;align-items:center;gap:22px;border-radius:28px"><div class="tile s t-navy"><svg class="ic"><use href="#i-chart-line"/></svg></div><div style="font-size:32px;font-weight:700;line-height:1.2">Gestor de tráfego</div></div><div class="card a" style="--d:0.71;padding:26px 28px;display:flex;align-items:center;gap:22px;border-radius:28px"><div class="tile s t-royal"><svg class="ic"><use href="#i-smartphone"/></svg></div><div style="font-size:32px;font-weight:700;line-height:1.2">Social media</div></div></div><div class="a" style="--d:1;position:absolute;left:110px;top:690px;width:900px;display:flex;align-items:center;gap:26px;background:#fff;border:1px solid var(--line);border-radius:30px;padding:28px 34px;box-shadow:0 20px 50px rgba(2,27,79,.08)"><div class="tile s t-yellow" style="flex:none"><svg class="ic"><use href="#i-graduation-cap"/></svg></div><div style="font-size:29px;line-height:1.35"><b>Nosso serviço custa metade</b> do que um estagiário sem experiência, que você ainda precisa treinar.</div></div><div class="card f" data-s="1" style="position:absolute;left:1060px;top:370px;width:750px;padding:0;overflow:hidden;background:var(--navy);color:#fff;border:none"><div style="padding:44px 48px 30px"><div class="sm" style="opacity:.75;font-size:26px;font-weight:600;letter-spacing:.1em">SOMANDO OS 4 PROFISSIONAIS</div><div class="num y" style="font-size:112px;margin-top:10px;white-space:nowrap">+ R$ 5.000</div><div style="font-size:34px;font-weight:500">por mês</div></div><div style="background:rgba(255,255,255,.07);padding:30px 48px 38px"><div class="sm" style="font-size:23px;opacity:.75;font-weight:600;letter-spacing:.1em;margin-bottom:16px">COMPARE POR MÊS</div><div style="display:flex;align-items:center;gap:16px;margin-bottom:16px"><div style="width:200px;font-size:24px;line-height:1.2">Equipe separada</div><div style="flex:1"><div class="cb" style="width:100%;background:var(--yellow);color:var(--navy);display:flex;align-items:center;padding-left:16px;font-weight:700;font-size:24px">+ R$ 5.000</div></div></div><div style="display:flex;align-items:center;gap:16px"><div style="width:200px;font-size:24px;line-height:1.2">Modernize</div><div style="flex:1;display:flex;align-items:center;gap:14px"><div class="cb" style="width:11%;background:var(--royal2);flex:none"></div><span style="font-size:30px;font-weight:800;white-space:nowrap">R$ 547</span></div></div></div></div><div class="yq f" data-s="2"><div class="yqc"><div class="yqt"><svg class="ic"><use href="#i-circle-help"/></svg> Pergunta-chave</div><div class="yqq">Faz sentido ter uma equipe completa por uma fração desse valor?</div><div class="yqs"><span class="pill"><svg class="ic"><use href="#i-check"/></svg> Sim</span></div></div></div><div class="foot"><span>Valor de referência informado pela Modernize</span><span data-num></span></div></section>
+
 <section class="slide dark noise" data-title="Fundador">
   <div class="bgl orb a1"></div><div class="bgl orb a2"></div><div class="bgl grid"></div>
   <div class="top"><div><img class="logo lw" src="assets/logo.png" alt="Modernize Digital"><img class="logo ld" src="assets/logo-escuro.png" alt=""></div><div class="tagp"><svg class="ic"><use href="#i-users"/></svg>Quem está por trás</div></div>
@@ -442,15 +486,15 @@ body.idle{cursor:none}
   </div>
 </section>
 
-<!-- 5 NÚMEROS -->
 <section class="slide royal noise" data-title="Números">
   <div class="bgl orb a1"></div><div class="bgl orb a2"></div><div class="bgl grid"></div>
   <div class="top"><div><img class="logo lw" src="assets/logo.png" alt="Modernize Digital"><img class="logo ld" src="assets/logo-escuro.png" alt=""></div><div class="tagp"><svg class="ic"><use href="#i-trending-up"/></svg>Modernize em números</div></div>
   <div style="position:absolute;left:110px;top:210px;width:820px">
     <div class="eyebrow a" style="--d:0">Crescimento</div>
     <div class="num y a" style="--d:.15;font-size:250px;margin:10px 0 0"><span data-count data-to="700" data-prefix="+" data-suffix="%">+700%</span></div>
-    <div class="lead a" style="--d:.4;margin-top:6px">em pouco mais de 2 anos, de <b>50</b> para <b>350</b> clientes ativos.</div>
-    <div class="f" data-s="2" style="margin-top:44px"><span class="pill"><svg class="ic"><use href="#i-flag"/></svg>Meta 2026: 500 clientes</span></div>
+    <div class="lead a" style="--d:.4;margin-top:6px">em pouco mais de 2 anos, de <b>50</b> para mais de <b>350</b> clientes ativos.</div>
+    <div class="a" style="--d:.7;display:flex;gap:14px;flex-wrap:wrap;margin-top:34px"><span class="pill"><svg class="ic"><use href="#i-users"/></svg> Mais de 350 clientes ativos</span><span class="pill w2"><svg class="ic"><use href="#i-layout-grid"/></svg> Mais de 50 segmentos atendidos</span></div>
+    <div class="f" data-s="2" style="margin-top:26px"><span class="pill"><svg class="ic"><use href="#i-flag"/></svg>Meta 2026: 500 clientes</span></div>
   </div>
   <div class="glass al f" data-s="1" style="position:absolute;left:1060px;top:200px;width:750px;height:760px;padding:50px 56px">
     <div class="sm" style="opacity:.8;margin-bottom:6px">Clientes ativos</div>
@@ -459,7 +503,7 @@ body.idle{cursor:none}
       <div class="bar3" style="left:290px;width:190px;height:420px;background:var(--yellow);transition-delay:.4s"></div>
       <div class="bar3" style="left:580px;width:150px;height:520px;background:transparent;border:3px dashed rgba(255,255,255,.7);border-bottom:0;transition-delay:.8s"></div>
       <div class="num" style="position:absolute;left:0;width:190px;text-align:center;bottom:84px;font-size:46px">50</div>
-      <div class="num y" style="position:absolute;left:290px;width:190px;text-align:center;bottom:434px;font-size:60px"><span data-count data-to="350">350</span></div>
+      <div class="num y" style="position:absolute;left:290px;width:190px;text-align:center;bottom:434px;font-size:60px"><span data-count data-to="350" data-suffix="+">350+</span></div>
       <div class="num" style="position:absolute;left:580px;width:150px;text-align:center;bottom:534px;font-size:46px;opacity:.9">500</div>
     </div>
     <div style="position:absolute;left:56px;right:56px;bottom:50px;height:40px;font-size:26px;font-weight:600;opacity:.9"><span style="position:absolute;left:0;width:190px;text-align:center">2023</span><span style="position:absolute;left:290px;width:190px;text-align:center">Hoje</span><span style="position:absolute;left:580px;width:150px;text-align:center">Meta 2026</span></div>
@@ -467,11 +511,10 @@ body.idle{cursor:none}
   <div class="foot"><span>Modernize Digital</span><span data-num></span></div>
 </section>
 
-<!-- 6 MISSÃO -->
 <section class="slide light" data-title="Missão">
   <div class="bgl orb a1"></div><div class="bgl orb a2"></div><div class="bgl grid"></div>
   <div class="top"><div><img class="logo lw" src="assets/logo.png" alt=""><img class="logo ld" src="assets/logo-escuro.png" alt="Modernize Digital"></div><div class="tagp" style="color:var(--royal)"><svg class="ic"><use href="#i-heart"/></svg>O que defendemos</div></div>
-  <h2 class="split" style="position:absolute;left:110px;top:200px;width:1700px;font-size:72px">Ajudar pequenos e médios empresários a <span class="rb">crescer</span></h2>
+  <h2 class="split" style="position:absolute;left:110px;top:200px;width:1700px;font-size:62px">Ajudar pequenos e médios empresários a <span class="rb">crescer</span></h2>
   <div style="position:absolute;left:110px;right:110px;top:380px;display:grid;grid-template-columns:repeat(3,1fr);gap:44px">
     <div class="card f" data-s="1" style="background:var(--royal);color:#fff;border:none"><div class="tile t-yellow"><svg class="ic"><use href="#i-award"/></svg></div><h3 style="margin:24px 0 10px;font-size:38px;white-space:nowrap">Qualidade de entrega</h3><p class="sm" style="color:#D6E4FF">Cada material feito com cuidado, no prazo combinado.</p></div>
     <div class="card f" data-s="2" style="background:var(--yellow);color:var(--navy);border:none"><div class="tile t-navy"><svg class="ic"><use href="#i-handshake"/></svg></div><h3 style="margin:24px 0 10px;font-size:38px;white-space:nowrap">Compromisso com o cliente</h3><p class="sm" style="color:#4B4000">Seu resultado é o nosso resultado.</p></div>
@@ -485,7 +528,6 @@ body.idle{cursor:none}
   <div class="foot"><span>Modernize Digital</span><span data-num></span></div>
 </section>
 
-<!-- 7 CASES -->
 <section class="slide dark noise" data-title="Resultados">
   <div class="bgl orb a1"></div><div class="bgl orb a2"></div><div class="bgl grid"></div>
   <div class="top"><div><img class="logo lw" src="assets/logo.png" alt="Modernize Digital"><img class="logo ld" src="assets/logo-escuro.png" alt=""></div><div class="tagp"><svg class="ic"><use href="#i-chart-line"/></svg>Resultados reais</div></div>
@@ -496,9 +538,8 @@ body.idle{cursor:none}
     <div class="glass f" data-s="3" style="padding:46px"><div style="display:flex;align-items:center;gap:18px"><div class="tile s t-glass"><svg class="ic"><use href="#i-wallet"/></svg></div><div class="sm" style="font-weight:600">Corretor de imóveis</div></div><div class="sm" style="opacity:.7;margin:34px 0 4px">Investimento</div><div style="font-size:50px;font-weight:600">R$ <span data-count data-to="5014">5.014</span></div><div class="sm" style="opacity:.7;margin:26px 0 0">Faturamento</div><div class="num y" style="font-size:80px;white-space:nowrap">R$ <span data-count data-to="490000">490.000</span></div><div class="pill" style="margin-top:32px;font-size:26px"><svg class="ic"><use href="#i-trending-up"/></svg>98x o valor investido</div></div>
   </div>
   <div class="foot"><span>Resultados de clientes reais. Variam conforme negócio, nicho e investimento.</span><span data-num></span></div>
-</section>
+<div class="yq f" data-s="4"><div class="yqc"><div class="yqt"><svg class="ic"><use href="#i-circle-help"/></svg> Pergunta-chave</div><div class="yqq">Se os seus anúncios trouxessem resultado assim, valeria a pena investir?</div><div class="yqs"><span class="pill"><svg class="ic"><use href="#i-check"/></svg> Sim</span></div></div></div></section>
 
-<!-- 8 PRINTS ANÚNCIOS -->
 <section class="slide paper" data-title="Prova">
   <div class="bgl orb a1"></div><div class="bgl orb a2"></div><div class="bgl grid"></div>
   <div class="top"><div><img class="logo lw" src="assets/logo.png" alt=""><img class="logo ld" src="assets/logo-escuro.png" alt="Modernize Digital"></div><div class="tagp" style="color:var(--royal)"><svg class="ic"><use href="#i-eye"/></svg>Direto do gerenciador</div></div>
@@ -516,7 +557,6 @@ body.idle{cursor:none}
   <div class="foot"><span>Prints reais de campanhas de clientes</span><span data-num></span></div>
 </section>
 
-<!-- 9 DEPOIMENTOS -->
 <section class="slide dark noise" data-title="Clientes">
   <div class="bgl orb a1"></div><div class="bgl orb a2"></div><div class="bgl grid"></div>
   <div class="top"><div><img class="logo lw" src="assets/logo.png" alt="Modernize Digital"><img class="logo ld" src="assets/logo-escuro.png" alt=""></div><div class="tagp"><svg class="ic"><use href="#i-message-square-heart"/></svg>O que dizem os clientes</div></div>
@@ -534,7 +574,6 @@ body.idle{cursor:none}
   <div class="foot"><span>Mensagens reais de clientes. Nomes ocultados.</span><span data-num></span></div>
 </section>
 
-<!-- 10 PLANO -->
 <section class="slide paper" data-title="Plano Premium">
   <div class="bgl orb a1"></div><div class="bgl orb a2"></div><div class="bgl grid"></div>
   <div class="top"><div><img class="logo lw" src="assets/logo.png" alt=""><img class="logo ld" src="assets/logo-escuro.png" alt="Modernize Digital"></div><div class="tagp" style="color:var(--royal)"><svg class="ic"><use href="#i-instagram"/></svg>Instagram e Facebook</div></div>
@@ -547,21 +586,19 @@ body.idle{cursor:none}
   <div class="foot"><span>Modernize Digital</span><span data-num></span></div>
 </section>
 
-<!-- 11 COMO FUNCIONA -->
 <section class="slide dark noise" data-title="Como funciona">
   <div class="bgl orb a1"></div><div class="bgl orb a2"></div><div class="bgl grid"></div>
   <div class="top"><div><img class="logo lw" src="assets/logo.png" alt="Modernize Digital"><img class="logo ld" src="assets/logo-escuro.png" alt=""></div><div class="tagp"><svg class="ic"><use href="#i-list-checks"/></svg>Como funciona</div></div>
   <h2 class="split" style="position:absolute;left:110px;top:195px;font-size:80px">Três fases. <span class="y">Você só aprova.</span></h2>
   <div style="position:absolute;left:210px;right:210px;top:470px;height:10px;background:rgba(255,255,255,.16);border-radius:8px"><div class="fill"></div></div>
   <div style="position:absolute;left:110px;right:110px;top:410px;display:grid;grid-template-columns:repeat(3,1fr);gap:44px">
-    <div class="f" data-s="1"><div class="tile t-yellow" style="border-radius:50%;width:130px;height:130px;font-size:64px;margin:0 0 40px 40px;animation:pulse 2s infinite"><svg class="ic"><use href="#i-clipboard-list"/></svg></div><div class="glass" style="padding:40px;min-height:380px"><div class="y" style="font-size:26px;font-weight:700;letter-spacing:.12em">FASE 1</div><h3 style="font-size:48px;margin:6px 0 16px">Planejamento</h3><p class="sm" style="opacity:.88;font-size:29px">Briefing do seu negócio, cronograma do mês e a sua aprovação antes de ir ao ar.</p></div></div>
-    <div class="f" data-s="2"><div class="tile t-yellow" style="border-radius:50%;width:130px;height:130px;font-size:64px;margin:0 0 40px 40px"><svg class="ic"><use href="#i-palette"/></svg></div><div class="glass" style="padding:40px;min-height:380px"><div class="y" style="font-size:26px;font-weight:700;letter-spacing:.12em">FASE 2</div><h3 style="font-size:48px;margin:6px 0 16px">Produção</h3><p class="sm" style="opacity:.88;font-size:29px">Artes, vídeos e legendas criados pela nossa equipe. Alterações quando precisar.</p><div class="pill o" style="margin-top:18px;font-size:24px;padding:8px 22px"><svg class="ic"><use href="#i-clock"/></svg>Até 7 dias úteis</div></div></div>
-    <div class="f" data-s="3"><div class="tile t-yellow" style="border-radius:50%;width:130px;height:130px;font-size:64px;margin:0 0 40px 40px"><svg class="ic"><use href="#i-rocket"/></svg></div><div class="glass" style="padding:40px;min-height:380px"><div class="y" style="font-size:26px;font-weight:700;letter-spacing:.12em">FASE 3</div><h3 style="font-size:48px;margin:6px 0 16px">Tráfego pago</h3><p class="sm" style="opacity:.88;font-size:29px">Briefing por vídeo, criativos aprovados e público segmentado desde o primeiro dia.</p><div class="pill o" style="margin-top:18px;font-size:24px;padding:8px 22px"><svg class="ic"><use href="#i-clock"/></svg>No ar em 1 a 2 dias úteis</div></div></div>
+    <div class="f" data-s="1"><div class="tile t-yellow" style="border-radius:50%;width:130px;height:130px;font-size:64px;margin:0 0 40px 40px;animation:pulse 2s infinite"><svg class="ic"><use href="#i-clipboard-list"/></svg></div><div class="glass" style="padding:40px;min-height:410px"><div class="y" style="font-size:26px;font-weight:700;letter-spacing:.12em">FASE 1</div><h3 style="font-size:48px;margin:6px 0 16px">Planejamento</h3><p class="sm" style="opacity:.88;font-size:29px">Briefing do seu negócio, cronograma do mês e a sua aprovação antes de ir ao ar.</p></div></div>
+    <div class="f" data-s="2"><div class="tile t-yellow" style="border-radius:50%;width:130px;height:130px;font-size:64px;margin:0 0 40px 40px"><svg class="ic"><use href="#i-palette"/></svg></div><div class="glass" style="padding:40px;min-height:410px"><div class="y" style="font-size:26px;font-weight:700;letter-spacing:.12em">FASE 2</div><h3 style="font-size:48px;margin:6px 0 16px">Produção</h3><p class="sm" style="opacity:.88;font-size:29px">Artes, vídeos e legendas criados pela nossa equipe. Alterações quando precisar.</p><div class="pill o" style="margin-top:18px;font-size:24px;padding:8px 22px"><svg class="ic"><use href="#i-clock"/></svg>Até 7 dias úteis</div></div></div>
+    <div class="f" data-s="3"><div class="tile t-yellow" style="border-radius:50%;width:130px;height:130px;font-size:64px;margin:0 0 40px 40px"><svg class="ic"><use href="#i-rocket"/></svg></div><div class="glass" style="padding:40px;min-height:410px"><div class="y" style="font-size:26px;font-weight:700;letter-spacing:.12em">FASE 3</div><h3 style="font-size:48px;margin:6px 0 16px">Tráfego pago</h3><p class="sm" style="opacity:.88;font-size:29px">Briefing por vídeo, criativos aprovados e público segmentado.</p><div class="pill o" style="margin-top:18px;font-size:24px;padding:8px 22px"><svg class="ic"><use href="#i-clock"/></svg>No ar em 1 a 2 dias úteis</div></div></div>
   </div>
   <div class="foot"><span>Modernize Digital</span><span data-num></span></div>
 </section>
 
-<!-- 12 O QUE RECEBE -->
 <section class="slide light" data-title="Incluso">
   <div class="bgl orb a1"></div><div class="bgl orb a2"></div><div class="bgl grid"></div>
   <div class="top"><div><img class="logo lw" src="assets/logo.png" alt=""><img class="logo ld" src="assets/logo-escuro.png" alt="Modernize Digital"></div><div class="tagp" style="color:var(--royal)"><svg class="ic"><use href="#i-circle-check"/></svg>Incluso todo mês</div></div>
@@ -577,21 +614,8 @@ body.idle{cursor:none}
   <div class="bgl" style="right:60px;top:300px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(255,212,59,.45),transparent 68%)"></div>
   <img class="mas pop" src="assets/mascote.png" alt="Mascote" style="--d:.5;right:90px;top:230px;height:780px;filter:drop-shadow(0 30px 40px rgba(2,27,79,.28))">
   <div class="foot"><span>Modernize Digital</span><span data-num></span></div>
-</section>
+<div class="yq f" data-s="1"><div class="yqc"><div class="yqt"><svg class="ic"><use href="#i-circle-help"/></svg> Pergunta-chave</div><div class="yqq">Você gostaria de ter tudo isso resolvido sem precisar se preocupar?</div><div class="yqs"><span class="pill"><svg class="ic"><use href="#i-check"/></svg> Sim</span></div></div></div></section>
 
-<!-- 13 CONFIANÇA -->
-<section class="slide royal noise" data-title="Confiança">
-  <div class="bgl orb a1"></div><div class="bgl orb a2"></div><div class="bgl grid"></div>
-  <div class="top"><div><img class="logo lw" src="assets/logo.png" alt="Modernize Digital"><img class="logo ld" src="assets/logo-escuro.png" alt=""></div></div>
-  <div class="bgl" style="left:90px;top:230px;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle,rgba(255,212,59,.4),transparent 66%)"></div>
-  <img class="mas pop" src="assets/mascote.png" alt="Mascote" style="--d:.3;left:130px;top:170px;height:860px;filter:drop-shadow(0 40px 50px rgba(0,0,0,.4))">
-  <div style="position:absolute;left:820px;top:290px;width:1000px">
-    <h1 class="split" style="font-size:124px">Atendimento próximo. <span class="y">Resultado real.</span></h1>
-    <div class="a" style="--d:1;margin-top:50px;display:flex;align-items:center;gap:24px"><div class="num y" style="font-size:120px"><span data-count data-to="350">350</span></div><div class="lead" style="font-size:40px;line-height:1.3">clientes ativos<br>já confiam na Modernize</div></div>
-  </div>
-</section>
-
-<!-- 14 INVESTIMENTO -->
 <section class="slide dark noise" data-title="Investimento">
   <div class="bgl orb a1"></div><div class="bgl orb a2"></div><div class="bgl grid"></div>
   <div class="top"><div><img class="logo lw" src="assets/logo.png" alt="Modernize Digital"><img class="logo ld" src="assets/logo-escuro.png" alt=""></div><div class="tagp"><svg class="ic"><use href="#i-wallet"/></svg>Investimento</div></div>
@@ -602,7 +626,7 @@ body.idle{cursor:none}
     <div class="a" style="--d:.45;font-size:60px;font-weight:500;margin-top:6px">por mês</div>
     <div class="a" style="--d:.6;margin-top:40px;display:flex;gap:18px"><span class="pill"><svg class="ic"><use href="#i-zap"/></svg>Valor promocional</span><span class="pill w2"><svg class="ic"><use href="#i-calendar-check"/></svg>Contrato de 6 meses</span></div>
   </div>
-  <div class="glass ar" style="--d:.5;position:absolute;right:110px;top:290px;width:640px;padding:54px">
+  <div class="glass ar" style="--d:.5;position:absolute;right:110px;top:250px;width:640px;padding:40px 54px">
     <div class="sm y" style="font-weight:700;letter-spacing:.12em;margin-bottom:26px">INCLUI</div>
     <div style="display:flex;flex-direction:column;gap:26px;font-size:36px">
       <div style="display:flex;gap:20px;align-items:center"><span class="tile s t-yellow" style="width:56px;height:56px;font-size:32px;border-radius:50%"><svg class="ic"><use href="#i-check"/></svg></span>12 publicações por mês</div>
@@ -611,10 +635,9 @@ body.idle{cursor:none}
       <div style="display:flex;gap:20px;align-items:center"><span class="tile s t-yellow" style="width:56px;height:56px;font-size:32px;border-radius:50%"><svg class="ic"><use href="#i-check"/></svg></span>Relatório semanal</div>
     </div>
   </div>
-  <div class="foot"><span>Modernize Digital</span><span data-num></span></div>
+  <div class="glass ar" style="--d:.9;position:absolute;right:110px;top:725px;width:640px;padding:26px 40px;border-radius:32px"><div class="sm" style="font-size:22px;opacity:.75;font-weight:700;letter-spacing:.1em;margin-bottom:14px">COMPARE POR MÊS</div><div style="display:flex;align-items:center;gap:14px;margin-bottom:12px"><div style="width:170px;font-size:22px;line-height:1.2">Equipe separada</div><div style="flex:1"><div class="cb" style="width:100%;background:rgba(255,255,255,.4);color:#fff;display:flex;align-items:center;padding-left:14px;font-weight:700;font-size:22px">+ R$ 5.000</div></div></div><div style="display:flex;align-items:center;gap:14px"><div style="width:170px;font-size:22px;line-height:1.2">Modernize</div><div style="flex:1;display:flex;align-items:center;gap:12px"><div class="cb" style="width:11%;background:var(--yellow);flex:none"></div><span class="y" style="font-size:28px;font-weight:800;white-space:nowrap">R$ 547</span></div></div></div><div class="yq f" data-s="1"><div class="yqc"><div class="yqt"><svg class="ic"><use href="#i-circle-help"/></svg> Pergunta-chave</div><div class="yqq">Esse investimento cabe no seu planejamento para começar este mês?</div><div class="yqs"><span class="pill"><svg class="ic"><use href="#i-check"/></svg> Sim</span></div></div></div><div class="foot"><span>Modernize Digital</span><span data-num></span></div>
 </section>
 
-<!-- 15 FECHAMENTO -->
 <section class="slide royal noise" data-title="Próximo passo">
   <div class="bgl orb a1"></div><div class="bgl orb a2"></div><div class="bgl grid"></div>
   <div class="top"><div><img class="logo lw" src="assets/logo.png" alt="Modernize Digital"><img class="logo ld" src="assets/logo-escuro.png" alt=""></div><div class="tagp"><svg class="ic"><use href="#i-send"/></svg>Próximo passo</div></div>
@@ -639,9 +662,12 @@ body.idle{cursor:none}
   </div>
 </section>
 
+
+
 <div id="wipe"></div>
 <div id="bar"></div>
 </div>
+<div id="rotate" class="on"><svg class="ic" style="width:64px;height:64px"><use href="#i-rotate-cw"/></svg><b>Gire o celular para<br>ver a apresentação na horizontal</b><p>Fica bem melhor em tela deitada ou no computador.</p><button id="rcont" type="button">Continuar assim mesmo</button></div>
 <div id="gate"><div class="box"><img src="assets/logo.png" alt="Modernize Digital"><h1>Apresentação comercial</h1><p>Acesso restrito à equipe Modernize. Digite o código para entrar.</p><form id="gform"><input id="gcode" type="password" placeholder="Código de acesso" autocomplete="off" autofocus><button type="submit">Entrar</button></form><div class="err" id="gerr"></div></div></div>
 <div id="hint">← → ou espaço para avançar · F tela cheia · Home/End</div>
 
@@ -649,7 +675,6 @@ body.idle{cursor:none}
 (function(){
   var stage=document.getElementById('stage'),slides=[].slice.call(document.querySelectorAll('.slide')),bar=document.getElementById('bar'),wipe=document.getElementById('wipe');
   var idx=0,step=0,total=slides.length,locked=false;
-  // palavras animadas nos títulos .split
   function split(el){
     var i=0;
     (function walk(node){
@@ -669,8 +694,8 @@ body.idle{cursor:none}
   [].forEach.call(document.querySelectorAll('.split'),split);
   [].forEach.call(document.querySelectorAll('[data-num]'),function(el){var s=el.closest('.slide');el.textContent=('0'+(slides.indexOf(s)+1)).slice(-2)+' / '+total});
 
-  function fit(){var k=Math.min(innerWidth/1920,innerHeight/1080);stage.style.transform='translate(-50%,-50%) scale('+k+')'}
-  addEventListener('resize',fit);fit();
+  function fit(){var w=window.innerWidth,h=window.innerHeight;if(window.visualViewport){w=visualViewport.width;h=visualViewport.height}var k=Math.min(w/1920,h/1080);stage.style.transform='translate(-50%,-50%) scale('+k+')'}
+  addEventListener('resize',fit);addEventListener('orientationchange',function(){setTimeout(fit,200)});fit();
   function frags(s){return [].slice.call(slides[s].querySelectorAll('.f')).sort(function(a,b){return a.dataset.s-b.dataset.s})}
   function groups(s){var g={};frags(s).forEach(function(f){(g[f.dataset.s]=g[f.dataset.s]||[]).push(f)});return Object.keys(g).sort(function(a,b){return a-b}).map(function(k){return g[k]})}
   function ease(t){return 1-Math.pow(1-t,3)}
@@ -690,7 +715,7 @@ body.idle{cursor:none}
     gs.forEach(function(g){g.forEach(function(f){f.classList.toggle('show',!!end)})});
     step=end?gs.length:0;
     slides[n].dataset.step=step; tl(n,step);
-    [].forEach.call(slides[n].querySelectorAll('.a,.ar,.al,.pop,.w>span'),function(e){e.style.animation='none';void e.offsetWidth;e.style.animation=''});
+    [].forEach.call(slides[n].querySelectorAll('.a,.ar,.al,.pop,.w>span,.cb'),function(e){e.style.animation='none';void e.offsetWidth;e.style.animation=''});
     counts(slides[n],false); if(end)counts(slides[n],true);
     bar.style.width=((n+1)/total*100)+'%';
     if(history.replaceState)history.replaceState(null,'','#'+(n+1));
@@ -706,21 +731,24 @@ body.idle{cursor:none}
     if(step>0){step--;gs[step].forEach(function(f){f.classList.remove('show')});slides[idx].dataset.step=step;tl(idx,step)}
     else if(idx>0)show(idx-1,true);
   }
+  function toggleFs(){try{var d=document,el=d.documentElement;if(d.fullscreenElement||d.webkitFullscreenElement){(d.exitFullscreen||d.webkitExitFullscreen).call(d)}else{(el.requestFullscreen||el.webkitRequestFullscreen||function(){}).call(el)}}catch(e){}}
   addEventListener('keydown',function(e){
     if(locked)return;
     var k=e.key;
     if(k==='ArrowRight'||k===' '||k==='PageDown'||k==='Enter'){e.preventDefault();next()}
     else if(k==='ArrowLeft'||k==='Backspace'||k==='PageUp'){e.preventDefault();prev()}
     else if(k==='Home')show(0,false);else if(k==='End')show(total-1,true);
-    else if(k==='f'||k==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}
+    else if(k==='f'||k==='F'){toggleFs()}
   });
-  addEventListener('click',function(e){if(locked)return;e.clientX>innerWidth*.3?next():prev()});
-  var tx=null;addEventListener('touchstart',function(e){if(locked)return;tx=e.touches[0].clientX});
-  addEventListener('touchend',function(e){if(locked||tx===null)return;var d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50)(d<0?next:prev)();tx=null});
+  addEventListener('click',function(e){if(locked)return;if(e.target.closest&&e.target.closest('#rotate,#gate'))return;e.clientX>innerWidth*.3?next():prev()});
+  var tx=null;addEventListener('touchstart',function(e){if(locked)return;tx=e.touches[0].clientX},{passive:true});
+  addEventListener('touchend',function(e){if(locked||tx===null)return;var d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50){(d<0?next:prev)();e.preventDefault()}tx=null});
   var idle;addEventListener('mousemove',function(e){
     document.body.classList.remove('idle');clearTimeout(idle);idle=setTimeout(function(){document.body.classList.add('idle')},2500);
     stage.style.setProperty('--mx',(e.clientX/innerWidth-.5).toFixed(3));stage.style.setProperty('--my',(e.clientY/innerHeight-.5).toFixed(3));
   });
+  var rot=document.getElementById('rotate'),rc=document.getElementById('rcont');
+  if(rc)rc.addEventListener('click',function(e){e.stopPropagation();rot.classList.remove('on')});
   var start=(parseInt((location.hash||'#1').slice(1))||1)-1;
   show(start,false,'init');
   document.body.classList.add('hint');setTimeout(function(){document.body.classList.remove('hint')},4500);
